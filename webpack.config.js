@@ -1,32 +1,32 @@
-const path = require('path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+const path = require("path");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
-  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-  entry: './client/index.js',
+  mode: process.env.NODE_ENV === "production" ? "production" : "development",
+  entry: "./client/index.js",
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, "./dist"),
+    filename: "bundle.js",
   },
   devtool:
-    process.env.NODE_ENV === 'production' ? false : 'eval-cheap-source-map',
+    process.env.NODE_ENV === "production" ? false : "eval-cheap-source-map",
   devServer: {
     static: {
-      directory: path.resolve(__dirname, './client'),
-      publicPath: './',
+      directory: path.resolve(__dirname, "./client"),
+      publicPath: "./",
     },
     proxy: [
       {
-        context: ['/corsproxy','/login','/signup', '/mainPage'],
-        target: 'http://localhost:3000',
+        context: ["/corsproxy", "/login", "/signup", "/mainPage"],
+        target: "http://localhost:3000",
         // secure: false,
       },
     ],
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: path.resolve(__dirname, './client/index.html'),
+      template: path.resolve(__dirname, "./client/index.html"),
     }),
     new Dotenv(),
   ],
@@ -36,16 +36,16 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: [['@babel/preset-env'], ['@babel/preset-react']],
+            presets: [["@babel/preset-env"], ["@babel/preset-react"]],
           },
         },
       },
       {
         test: /\css?$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
       },
     ],
   },

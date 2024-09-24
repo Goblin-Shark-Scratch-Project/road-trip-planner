@@ -26,10 +26,11 @@ const styles= {
         display: 'flex',
         position: 'absolute',
         right: '20',
-        height: '400px',
+        height: '530px',
         width: '300px',
         flexDirection: 'column',
-        padding: '10px'
+        padding: '10px',
+        borderRadius: '5px',
       }
 }
 
